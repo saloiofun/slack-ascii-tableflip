@@ -15,7 +15,7 @@ func main() {
 
 	r.POST("/tableflip", handlers.Tableflip)
 	r.GET("/slack/authorization", handlers.Authorization)
-	r.GET("/slack/callback", handlers.Callback)
+	r.GET("/slack/callback/:code/:state", handlers.Callback)
 
 	// By default it serves on :8080 unless a
 	// PORT environment variable was defined.
