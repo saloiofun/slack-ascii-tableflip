@@ -14,6 +14,7 @@ func main() {
 	r := gin.Default()
 
 	r.POST("/tableflip", handlers.Tableflip)
+	r.GET("/slack/authorization", handlers.Authorization)
 
 	// By default it serves on :8080 unless a
 	// PORT environment variable was defined.
