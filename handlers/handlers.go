@@ -6,9 +6,12 @@ import (
 
 // Tableflip is here.
 func Tableflip(c *gin.Context) {
-	if command := c.PostForm("command"); command == "/tableflip" {
+	command := c.PostForm("command")
+
+	if command == "/tableflip" {
 		c.JSON(200, gin.H{
-			"text": "(╯°□°）╯︵ ┻━┻",
+			"response_type": "in_channel",
+			"text":          "(╯°□°）╯︵ ┻━┻",
 		})
 	} else {
 		c.JSON(200, gin.H{
