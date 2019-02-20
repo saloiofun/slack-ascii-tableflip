@@ -27,8 +27,8 @@ func Authorization(c *gin.Context) {
 
 // Callback for token.
 func Callback(c *gin.Context) {
-	code := c.Param("code")
-	state := c.Param("state")
+	code := c.Query("code")
+	state := c.Query("state")
 	message := "Token: " + code + " State: " + state
 	c.String(http.StatusOK, message)
 }
