@@ -16,7 +16,9 @@ var (
 		Scopes:       []string{"chat:write:user"},
 	}
 
-	secret = os.Getenv("SLACK_SIGNING_SECRET")
+	secret       = os.Getenv("SLACK_SIGNING_SECRET")
+	clientID     = os.Getenv("SLACK_CLIENT_ID")
+	clientSecret = os.Getenv("SLACK_SECRET")
 )
 
 // Authorization of Slack OAuth.
@@ -28,7 +30,7 @@ func Authorization(c *gin.Context) {
 // Callback for token.
 func Callback(c *gin.Context) {
 	code := c.Query("code")
-	state := c.Query("state")
-	message := "Token: " + code + " State: " + state
-	c.String(http.StatusOK, message)
+
+	authorizeURL := "https://slack.com/api/oauth.access?" + "client_id=" + clientID + "&" + "client_secret=" + clientSecret + "&" + "code=" + code
+	http.Get(authorizeURL)
 }
