@@ -5,18 +5,18 @@ import (
 	"log"
 	"net/http"
 	"net/url"
+	"os"
 
 	"github.com/gin-gonic/gin"
 )
 
 // Tableflip is here.
 func Tableflip(c *gin.Context) {
-	token := c.PostForm("token")
 	channel := c.PostForm("channel_id")
 	methodURL := "https://slack.com/api/chat.postMessage"
 
 	v := url.Values{}
-	v.Set("token", token)
+	v.Set("token", os.Getenv("SLACK_TOKEN"))
 	v.Add("channel", channel)
 	v.Add("text", "(╯°□°）╯︵ ┻━┻")
 	v.Add("as_user", "true")
