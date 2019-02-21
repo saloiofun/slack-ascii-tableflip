@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"net/url"
 	"os"
+	"strings"
 
 	"github.com/gin-gonic/gin"
 )
@@ -13,12 +14,18 @@ import (
 // Tableflip is here.
 func Tableflip(c *gin.Context) {
 	channel := c.PostForm("channel_id")
+	text := strings.Split(c.PostForm("text"), " ")[0]
 	methodURL := "https://slack.com/api/chat.postMessage"
+	ascii := "(╯°□°）╯︵ ┻━┻"
+
+	if text == "down" {
+		ascii = "┬─┬ノ( º _ ºノ)"
+	}
 
 	v := url.Values{}
 	v.Set("token", os.Getenv("SLACK_TOKEN"))
 	v.Add("channel", channel)
-	v.Add("text", "(╯°□°）╯︵ ┻━┻")
+	v.Add("text", ascii)
 	v.Add("as_user", "true")
 
 	resp, err := http.PostForm(methodURL, v)
@@ -38,16 +45,4 @@ func Tableflip(c *gin.Context) {
 	}
 
 	log.Println(string(body[:]))
-
-	// command := c.PostForm("command")
-	// if command == "/tableflip" {
-	// 	c.JSON(200, gin.H{
-	// 		"response_type": "in_channel",
-	// 		"text":          "(╯°□°）╯︵ ┻━┻",
-	// 	})
-	// } else {
-	// 	c.JSON(200, gin.H{
-	// 		"text": command,
-	// 	})
-	// }
 }
