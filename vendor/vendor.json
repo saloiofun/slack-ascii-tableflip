@@ -111,6 +111,12 @@
 			"revisionTime": "2019-02-16T14:30:17Z"
 		},
 		{
+			"checksumSHA1": "J0hkBc1iaKpx49kC78VSHIKRLIY=",
+			"path": "golang.org/x/oauth2/slack",
+			"revision": "9b3c75971fc92dd27c6436a37c05c831498658f1",
+			"revisionTime": "2019-02-20T15:45:37Z"
+		},
+		{
 			"checksumSHA1": "k8nyiVwbKd7N/Lo9z85y6v/03NE=",
 			"path": "golang.org/x/sys/unix",
 			"revision": "d0b11bdaac8adb652bff00e49bcacf992835621a",
